@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d1a2c8cf99b9a4ea31775e9ae33624, type: 3}
+  m_Name: WeatherGirl
+  m_EditorClassIdentifier: 
+  dialogues:
+  - _dialogue: Hi there!!
+    _takesInput: 0
+    _inputFieldPromptText: 
+    _responseToInputStringTemplate: 
+  - _dialogue: 'I can tell you the weather in any location in the United States.
+      Just enter a location!
+
+
+      Hint: I do my best work when given a state and
+      a city'
+    _takesInput: 0
+    _inputFieldPromptText: 
+    _responseToInputStringTemplate: 
+  - _dialogue: 
+    _takesInput: 1
+    _inputFieldPromptText: Enter a location in the United States
+    _responseToInputStringTemplate: 'Weather conditions in {0}:'
+  - _dialogue: Have a nice day!
+    _takesInput: 0
+    _inputFieldPromptText: 
+    _responseToInputStringTemplate: 
