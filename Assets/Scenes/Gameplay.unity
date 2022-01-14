@@ -19737,7 +19737,7 @@ MonoBehaviour:
   characterController: {fileID: 1685384593}
   playerWalkSpeed: 5
   playerSprintSpeed: 10
-  gravityAccel: -500
+  gravityAccel: -300
   groundCheck: {fileID: 1393914408}
 --- !u!114 &1685384596
 MonoBehaviour:
