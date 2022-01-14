@@ -72,7 +72,7 @@ namespace Sonderistic.Player.Movement
 
         private void Awake()
         {
-            groundLayerMask = ~LayerMask.NameToLayer(GROUND_LAYER_MASK_NAME);
+            groundLayerMask = 1 << LayerMask.NameToLayer(GROUND_LAYER_MASK_NAME);
         }
 
         private void OnEnable()

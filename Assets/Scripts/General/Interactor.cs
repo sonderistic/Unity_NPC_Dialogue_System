@@ -73,7 +73,7 @@ namespace Sonderistic.GameInteraction
         private void Awake()
         {
             // mask everything but this layer.
-            layerMask = ~LayerMask.NameToLayer("Interactable");
+            layerMask = 1 << LayerMask.NameToLayer("Interactable");
         }
 
         private void OnEnable()
