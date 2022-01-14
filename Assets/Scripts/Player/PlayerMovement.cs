@@ -47,7 +47,7 @@ namespace Sonderistic.Player.Movement
             Vector3 horizontalVelocity = (playerHorizontalInputAxisRaw.x * transform.right + playerHorizontalInputAxisRaw.y * transform.forward) * movementSpeed;
             characterController.Move(horizontalVelocity * Time.deltaTime);
 
-            bool playerGrounded = Physics.CheckSphere(groundCheck.position, 1f, groundLayerMask);
+            bool playerGrounded = Physics.Raycast(groundCheck.position, -transform.up, 0.1f, groundLayerMask);
             Vector3 verticalVelocity = new Vector3(0, -2f, 0);
 
             if (playerGrounded == false)
@@ -72,7 +72,7 @@ namespace Sonderistic.Player.Movement
 
         private void Awake()
         {
-            groundLayerMask = LayerMask.NameToLayer(GROUND_LAYER_MASK_NAME);
+            groundLayerMask = ~LayerMask.NameToLayer(GROUND_LAYER_MASK_NAME);
         }
 
         private void OnEnable()
