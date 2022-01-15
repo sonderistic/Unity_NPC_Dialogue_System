@@ -15,21 +15,24 @@ namespace Sonderistic.Data
         #region Methods
         public static async Task<string> SendPostRequest(string uri, Dictionary<string, string> payload, string auth = null)
         {
-            if (string.IsNullOrEmpty(auth) == false)
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, uri))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", auth);
+                if (string.IsNullOrEmpty(auth) == false)
+                {
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", auth);
+                }
+                requestMessage.Content = new FormUrlEncodedContent(payload);
+
+                HttpResponseMessage response = await client.SendAsync(requestMessage);
+                string result = null;
+
+                if (response.IsSuccessStatusCode == true)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                }
+
+                return result;
             }
-
-            FormUrlEncodedContent content = new FormUrlEncodedContent(payload);
-            HttpResponseMessage response = await client.PostAsync(uri, content);
-            string result = null;
-
-            if (response.IsSuccessStatusCode == true)
-            {
-                result = await response.Content.ReadAsStringAsync();
-            }
-
-            return result;
         }
 
         public static async Task<T> SendPostRequest<T>(string uri, Dictionary<string, string> payload, string auth = null)
@@ -47,20 +50,23 @@ namespace Sonderistic.Data
 
         public static async Task<string> SendGetRequest(string uri, string auth = null)
         {
-            if (string.IsNullOrEmpty(auth) == false)
+            using (HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Get, uri))
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", auth);
+                if (string.IsNullOrEmpty(auth) == false)
+                {
+                    requestMessage.Headers.Authorization = new AuthenticationHeaderValue("Bearer", auth);
+                }
+
+                HttpResponseMessage response = await client.SendAsync(requestMessage);
+                string result = null;
+
+                if (response.IsSuccessStatusCode == true)
+                {
+                    result = await response.Content.ReadAsStringAsync();
+                }
+
+                return result;
             }
-
-            HttpResponseMessage response = await client.GetAsync(uri);
-            string result = null; 
-
-            if (response.IsSuccessStatusCode == true)
-            {
-                result = await response.Content.ReadAsStringAsync(); 
-            }
-
-            return result;
         }
 
         public static async Task<T> SendGetRequest<T>(string uri, string auth = null)
